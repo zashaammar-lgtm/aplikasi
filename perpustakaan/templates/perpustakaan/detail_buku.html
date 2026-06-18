@@ -1,0 +1,65 @@
+{% extends 'perpustakaan/base.html' %}
+{% block content %}
+<div class="mb-6 flex items-center gap-3">
+    <a href="{% url 'daftar_buku' %}" class="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-full transition duration-200">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+    </a>
+    <div>
+        <p class="text-[11px] text-slate-400 font-medium tracking-wide">Kelola Buku</p>
+        <h2 class="text-xl font-bold text-slate-900 -mt-0.5">Detail Buku</h2>
+    </div>
+</div>
+
+<div class="bg-white p-6 rounded-[24px] shadow-sm border border-slate-100/50 max-w-3xl">
+    <div class="grid grid-cols-2 gap-4">
+        
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Judul</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ buku.judul }}</p>
+        </div>
+        
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Pengarang</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ buku.pengarang }}</p>
+        </div>
+        
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Kategori</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ buku.kategori }}</p>
+        </div>
+        
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Penerbit</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ buku.penerbit }}</p>
+        </div>
+        
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Tahun Terbit</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ buku.tahun_terbit }}</p>
+        </div>
+        
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">ISBN</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ buku.isbn }}</p>
+        </div>
+        
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Rak / Lokasi</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ buku.rak_lokasi }}</p>
+        </div>
+        
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Stok</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ buku.stok }}</p>
+        </div>
+        
+        <div class="col-span-2 bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Deskripsi</label>
+            <p class="text-slate-600 text-sm leading-relaxed">{{ buku.deskripsi }}</p>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

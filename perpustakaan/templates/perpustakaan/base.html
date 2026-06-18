@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPUSTAKA - Sistem Peminjaman Buku</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#f4f6f9] text-slate-800 antialiased min-h-screen flex">
+
+    <aside class="w-64 bg-[#090d16] text-white flex flex-col justify-between p-5 min-h-screen fixed left-0 top-0 z-10">
+        <div>
+            <div class="flex items-center gap-3 mb-8 px-2">
+                <div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center font-bold text-sm shadow-md shadow-blue-500/30">
+                    P
+                </div>
+                <div>
+                    <p class="text-[10px] text-slate-500 font-bold tracking-widest uppercase">Sipustaka</p>
+                    <h1 class="text-xs font-bold leading-tight">Sistem Peminjaman<br>Buku</h1>
+                </div>
+            </div>
+
+            <nav class="space-y-1.5">
+    <a href="{% url 'dashboard' %}" 
+       class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl transition duration-150 {% if request.path == '/' or 'dashboard' in request.path %}bg-white/10 text-white font-semibold{% else %}text-slate-400 hover:text-white hover:bg-white/5 font-medium{% endif %}">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>
+        Dashboard
+    </a>
+    
+    <a href="{% url 'daftar_buku' %}" 
+       class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl transition duration-150 {% if 'buku' in request.path %}bg-white/10 text-white font-semibold{% else %}text-slate-400 hover:text-white hover:bg-white/5 font-medium{% endif %}">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+        Buku
+    </a>
+
+    <a href="{% url 'daftar_peminjaman' %}" 
+       class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl transition duration-150 {% if 'peminjaman' in request.path %}bg-white/10 text-white font-semibold{% else %}text-slate-400 hover:text-white hover:bg-white/5 font-medium{% endif %}">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2Z"/></svg>
+        Peminjaman
+    </a>
+
+    <a href="{% url 'daftar_user' %}" 
+       class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl transition duration-150 {% if 'user' in request.path %}bg-white/10 text-white font-semibold{% else %}text-slate-400 hover:text-white hover:bg-white/5 font-medium{% endif %}">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
+        User
+    </a>
+</nav>
+        </div>
+
+        <div class="bg-white/5 p-3.5 rounded-xl border border-white/5">
+            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Admin Aktif</p>
+            <p class="text-xs font-semibold text-slate-200 mt-0.5">Budi Siregar</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 min-h-screen ml-64 p-8 lg:p-10">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

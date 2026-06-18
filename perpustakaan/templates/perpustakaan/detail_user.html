@@ -1,0 +1,45 @@
+{% extends 'perpustakaan/base.html' %}
+{% block content %}
+<div class="mb-6 flex items-center gap-3">
+    <a href="{% url 'daftar_user' %}" class="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-full transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+    </a>
+    <div>
+        <p class="text-[11px] text-slate-400 font-medium tracking-wide">Kelola User</p>
+        <h2 class="text-xl font-bold text-slate-900 -mt-0.5">Detail User</h2>
+    </div>
+</div>
+
+<div class="bg-white p-6 rounded-[24px] shadow-sm border border-slate-100 max-w-3xl">
+    <div class="grid grid-cols-2 gap-4">
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">ID</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ user_member.id }}</p>
+        </div>
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Nama</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ user_member.nama }}</p>
+        </div>
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Kelas</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ user_member.kelas }}</p>
+        </div>
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">NIS</label>
+            <p class="text-[#111827] font-bold text-[15px]">{{ user_member.nis }}</p>
+        </div>
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl flex flex-col justify-center">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Status</label>
+            <span class="bg-emerald-50 text-emerald-600 px-2.5 py-0.5 rounded-full text-[11px] font-bold w-fit mt-0.5">Aktif</span>
+        </div>
+        <div class="bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Total Peminjaman</label>
+            <p class="text-[#111827] font-bold text-[15px]">1</p>
+        </div>
+        <div class="col-span-2 bg-[#f8f9fa] p-4 px-5 rounded-2xl">
+            <label class="text-[10px] text-slate-400 font-bold tracking-[0.15em] uppercase block mb-1">Peminjaman Aktif</label>
+            <p class="text-slate-600 text-sm mt-0.5">1 buku masih dipinjam.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

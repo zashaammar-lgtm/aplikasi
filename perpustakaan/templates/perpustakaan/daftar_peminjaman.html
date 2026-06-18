@@ -1,0 +1,72 @@
+{% extends 'perpustakaan/base.html' %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <div>
+        <p class="text-xs text-slate-400">Catat peminjaman dan pengembalian buku.</p>
+        <h2 class="text-2xl font-bold text-slate-800">Peminjaman</h2>
+    </div>
+    <a href="{% url 'pinjam_buku' %}" class="bg-[#2563eb] hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm transition flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 8.25V6a2.25 2.25 0 0 0-2.25-2.25H4.5A2.25 2.25 0 0 0 2.25 6v8.25A2.25 2.25 0 0 0 4.5 16.5H6" />
+        <rect x="7.5" y="7.5" width="14.25" height="14.25" rx="2" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M14.625 12v5.25M12 14.625h5.25" />
+    </svg>
+    Pinjam Buku
+</a>
+</div>
+
+<div class="bg-white rounded-[24px] shadow-sm border border-slate-100 overflow-hidden">
+    <table class="w-full text-left text-sm text-slate-600 border-collapse">
+        <thead class="bg-white text-xs text-slate-500 font-semibold border-b border-slate-100">
+            <tr>
+                <th class="py-4 px-5 pl-6">ID</th>
+                <th class="py-4 px-5">Nama Peminjam</th>
+                <th class="py-4 px-5">Buku</th>
+                <th class="py-4 px-5">Tanggal Pinjam</th>
+                <th class="py-4 px-5">Jatuh Tempo</th>
+                <th class="py-4 px-5">Keperluan</th>
+                <th class="py-4 px-5">Petugas</th>
+                <th class="py-4 px-5">Status</th>
+                <th class="py-4 px-5 text-center pr-6">Aksi</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100 bg-white">
+            {% for p in daftar_peminjaman %}
+            <tr class="hover:bg-slate-50/50 transition duration-150">
+                <td class="py-4 px-5 pl-6 font-bold text-slate-800">{{ p.id_peminjam }}</td>
+                <td class="py-4 px-5 text-slate-700 font-medium">{{ p.nama_peminjam }}</td>
+                <td class="py-4 px-5 text-slate-800 font-semibold max-w-[180px] truncate">{{ p.id_buku.judul }}</td>
+                <td class="py-4 px-5 text-slate-600 font-medium">{{ p.tanggal_pinjam|date:"d M Y"|default:"01 Jun 2026" }}</td>
+                <td class="py-4 px-5 text-slate-600 font-medium">{{ p.jatuh_tempo|date:"d M Y"|default:"08 Jun 2026" }}</td>
+                <td class="py-4 px-5 text-xs text-slate-400 max-w-xs leading-relaxed">{{ p.keperluan|default:"Bacaan pribadi" }}</td>
+                <td class="py-4 px-5 text-slate-600 font-medium">{{ p.petugas|default:"Budi Siregar" }}</td>
+                <td class="py-4 px-5">
+                    {% if p.status_kembali == 'Dikembalikan' %}
+                    <span class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-[11px] font-bold">
+                        Dikembalikan
+                    </span>
+                    {% else %}
+                    <span class="bg-[#fef3c7] text-[#d97706] px-2.5 py-0.5 rounded-md text-[11px] font-bold inline-block">
+                        Dipinjam
+                    </span>
+                    {% endif %}
+                </td>
+                <td class="py-4 px-5 pr-6 text-center">
+                    {% if p.status_kembali != 'Dikembalikan' %}
+                    <a href="{% url 'kembalikan_buku' p.id_peminjam %}" class="bg-[#059669] hover:bg-[#047857] text-white text-[11px] font-bold px-4 py-1 rounded-full shadow-sm transition duration-150 inline-block">
+                        Kembalikan
+                    </a>
+                    {% else %}
+                    <span class="text-slate-300 text-xs font-medium">-</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9" class="p-8 text-center text-slate-400 text-sm">Belum ada transaksi peminjaman.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
