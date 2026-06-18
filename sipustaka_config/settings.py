@@ -75,12 +75,8 @@ WSGI_APPLICATION = 'sipustaka_config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'perpus_db',       # Nama database yang kamu buat di psql
-        'USER': 'postgres',        # Username default PostgreSQL kamu
-        'PASSWORD': 'ammar2009', # GANTI dengan password PostgreSQL yang kamu ketik di psql tadi
-        'HOST': 'localhost',
-        'PORT': '5432',            # Port default sesuai screenshot-mu
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
